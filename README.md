@@ -19,14 +19,14 @@
 
 ### 1. 실외 환경 능동 동기화 (Real-time Synchronization)
 *   **지능형 커튼 및 조명:** 조도 센서(CDS)의 ADC 데이터를 16회 측정 후 평균값을 산출하여 노이즈를 필터링하고, 빛 유입량에 맞춰 커튼 모터(Fast PWM)의 각도와 RGB LED의 디밍(Dimming)을 부드럽게 자동 제어.
-*   **쾌적 수면 온도 유지:** 1-Wire 프로토콜로 구현한 DHT11 센서 제어를 통해 온습도를 측정, 설정된 이상적 수면 조건(온도 24~29도, 습도 40~60%)을 벗어날 경우 릴레이를 통해 선풍기를 자동 구동[cite: 4, 5].
+*   **쾌적 수면 온도 유지:** 1-Wire 프로토콜로 구현한 DHT11 센서 제어를 통해 온습도를 측정, 설정된 이상적 수면 조건(온도 24~29도, 습도 40~60%)을 벗어날 경우 릴레이를 통해 선풍기를 자동 구동.
 
 ### 2. 다중 모듈 병렬 제어 알고리즘
-*   비동기적 타이머 인터럽트를 활용하여 센서 데이터 스캐닝, 블루투스 UART 송수신, 모터 PWM 제어가 메인 루프의 지연 없이 동시에 구동되도록 설계[cite: 4].
-*   각 기기의 동작을 독립적인 상태 머신(FSM) 모듈로 분리하여 코드의 재사용성 확보[cite: 4, 5].
+*   비동기적 타이머 인터럽트를 활용하여 센서 데이터 스캐닝, 블루투스 UART 송수신, 모터 PWM 제어가 메인 루프의 지연 없이 동시에 구동되도록 설계.
+*   각 기기의 동작을 독립적인 상태 머신(FSM) 모듈로 분리하여 코드의 재사용성 확보.
 
 ### 3. 실시간 모니터링 및 시각적 피드백
-*   I2C 통신 방식의 1602 LCD를 연동하여 현재 측정된 온/습도/조도 수치와 각 장치(Fan, LED, Curtain)의 동작 상태, 제어 모드(Auto/Manual)를 1초 주기로 갱신하여 출력[cite: 4, 5].
+*   I2C 통신 방식의 1602 LCD를 연동하여 현재 측정된 온/습도/조도 수치와 각 장치(Fan, LED, Curtain)의 동작 상태, 제어 모드(Auto/Manual)를 1초 주기로 갱신하여 출력.
 
 ## ⚙️ 하드웨어 구성 및 핀맵 (Hardware PinMap)
 
@@ -47,18 +47,18 @@
 ```text
 📦 Smart-Sleep-Control-System
  ┣ 📂 src
- ┃ ┣ 📜 main.c        # 메인 루프, 시스템 초기화 및 비동기 틱(Tick) 타이머 스케줄링[cite: 4]
- ┃ ┣ 📜 button.c      # 물리 버튼 GPIO 설정 및 디바운싱(Debouncing) 상태 판별 로직[cite: 4]
- ┃ ┣ 📜 cotton.c      # Timer 1 (OC1C) 기반 PWM 제어를 통한 스마트 커튼 서보모터 구동[cite: 4]
- ┃ ┣ 📜 fan.c         # DHT11 1-Wire 데이터 파싱 및 릴레이(DC 모터), 회전 서보 제어[cite: 4]
- ┃ ┣ 📜 lcd.c         # I2C(TWI) 레지스터 직접 제어 및 1602 LCD 화면 출력 프로토콜[cite: 4]
- ┃ ┣ 📜 led.c         # 조도 센서 ADC 변환 및 RGB LED PWM 디밍(Dimming) 제어[cite: 4]
- ┃ ┗ 📜 bluetooth.c   # UART1 인터럽트(RX) 기반 블루투스 명령어 파싱 및 모바일 상태 전송[cite: 4]
+ ┃ ┣ 📜 main.c        # 메인 루프, 시스템 초기화 및 비동기 틱(Tick) 타이머 스케줄링
+ ┃ ┣ 📜 button.c      # 물리 버튼 GPIO 설정 및 디바운싱(Debouncing) 상태 판별 로직
+ ┃ ┣ 📜 cotton.c      # Timer 1 (OC1C) 기반 PWM 제어를 통한 스마트 커튼 서보모터 구동
+ ┃ ┣ 📜 fan.c         # DHT11 1-Wire 데이터 파싱 및 릴레이(DC 모터), 회전 서보 제어
+ ┃ ┣ 📜 lcd.c         # I2C(TWI) 레지스터 직접 제어 및 1602 LCD 화면 출력 프로토콜
+ ┃ ┣ 📜 led.c         # 조도 센서 ADC 변환 및 RGB LED PWM 디밍(Dimming) 제어
+ ┃ ┗ 📜 bluetooth.c   # UART1 인터럽트(RX) 기반 블루투스 명령어 파싱 및 모바일 상태 전송
  ┣ 📂 inc
- ┃ ┣ 📜 button.h      # 버튼 구조체(BUTTON) 및 액션 열거형 선언[cite: 4]
- ┃ ┣ 📜 cotton.h      # 커튼 구동 외부 전역 변수 및 함수 선언[cite: 4]
- ┃ ┣ 📜 fan.h         # DHT11 통신 타이밍 매크로 및 팬 상태 선언[cite: 4]
- ┃ ┣ 📜 lcd.h         # I2C 주소(0x27) 매크로 및 LCD 초기화 함수 선언[cite: 4]
- ┃ ┣ 📜 led.h         # LED 색상/밝기 매핑 및 ADC 채널 설정 선언[cite: 4]
- ┃ ┗ 📜 bluetooth.h   # UART 통신 속도(Baudrate) 및 버퍼 제어 선언[cite: 4]
+ ┃ ┣ 📜 button.h      # 버튼 구조체(BUTTON) 및 액션 열거형 선언
+ ┃ ┣ 📜 cotton.h      # 커튼 구동 외부 전역 변수 및 함수 선언
+ ┃ ┣ 📜 fan.h         # DHT11 통신 타이밍 매크로 및 팬 상태 선언
+ ┃ ┣ 📜 lcd.h         # I2C 주소(0x27) 매크로 및 LCD 초기화 함수 선언
+ ┃ ┣ 📜 led.h         # LED 색상/밝기 매핑 및 ADC 채널 설정 선언
+ ┃ ┗ 📜 bluetooth.h   # UART 통신 속도(Baudrate) 및 버퍼 제어 선언
  ┗ 📜 README.md
