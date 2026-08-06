@@ -39,8 +39,9 @@
 ## 🎥 시연 영상 (Demo)
 아래 이미지를 클릭하시면 실제 시스템 구동 및 모드별 제어 시연 영상을 유튜브에서 확인하실 수 있습니다[cite: 5].
 
-[![시연영상](https://img.youtube.com/vi/여기에_유튜브_영상_ID를_넣으세요/0.jpg)](https://www.youtube.com/watch?v=여기에_유튜브_영상_ID를_넣으세요)
+[![시연영상](https://img.youtube.com/vi/여기에_유튜브_영상_ID를_넣으세요/0.jpg)](https://www.youtube.com/watch?v=697TeL82hJw&list=LL&index=19)
 *(위 링크의 `여기에_유튜브_영상_ID를_넣으세요` 부분에 실제 유튜브 영상 링크의 `v=` 뒤에 있는 문자를 복사해서 넣어주세요.)*
+https://www.youtube.com/watch?v=697TeL82hJw&list=LL&index=19
 
 ## 🔧 Troubleshooting 및 해결 전략[cite: 5]
 *   **전압 강하 및 통신 노이즈 문제**[cite: 5]
