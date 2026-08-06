@@ -61,6 +61,4 @@
  ┃ ┣ 📜 lcd.h         # I2C 주소(0x27) 매크로 및 LCD 초기화 함수 선언[cite: 4]
  ┃ ┣ 📜 led.h         # LED 색상/밝기 매핑 및 ADC 채널 설정 선언[cite: 4]
  ┃ ┗ 📜 bluetooth.h   # UART 통신 속도(Baudrate) 및 버퍼 제어 선언[cite: 4]
- ┣ 📂 docs            # 발표 자료(PPT), 하드웨어 회로도 및 아키텍처 다이어그램
- ┣ 📜 Makefile        # Linux 환경 AVR-GCC 빌드 자동화 스크립트
  ┗ 📜 README.md
